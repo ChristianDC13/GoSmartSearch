@@ -30,7 +30,7 @@ func SearchInMaps(elements []map[string]string, term, key string, tolerance floa
 		return nil, err
 	}
 
-	result := make([]map[string]string, len(sortedKeyValues))
+	result := make([]map[string]string, 0, len(sortedKeyValues))
 
 	for _, item := range sortedKeyValues {
 
