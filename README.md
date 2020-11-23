@@ -1,3 +1,6 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/DevCriss/GoSmartSearch)](https://goreportcard.com/report/github.com/DevCriss/GoSmartSearch)
+[![Godoc](https://godoc.org/github.com/DevCriss/GoSmartSearch?status.svg)](https://pkg.go.dev/github.com/DevCriss/GoSmartSearch)
+
 # GoSmartSearch
 ## What is this?
 GoSmartSearch is an open source library that gives you the ability to search within your data collections. Forget about annoying nested conditions when you want to find a specific element in your data collection (Slice) using the GO language.
