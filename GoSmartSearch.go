@@ -11,9 +11,8 @@ type stringResult struct {
 	accuracy float32
 }
 
-/*
-Returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
-*/
+
+// SearchInMaps returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
 func SearchInMaps(elements []map[string]string, term string, key string, tolerance float32) ([]map[string]string, error) {
 	if tolerance > 1 || tolerance < 0 {
 		return nil, fmt.Errorf("validation error: %s", "'tolerance' must be a float32 from 0 to 1")
@@ -44,9 +43,8 @@ func SearchInMaps(elements []map[string]string, term string, key string, toleran
 
 }
 
-/*
-Returns a slice formed by the input elements ordered from most to least similar to the input term
-*/
+
+// SearchInStrings returns a slice formed by the input elements ordered from most to least similar to the input term
 func SearchInStrings(elements []string, term string, tolerance float32) ([]string, error) {
 
 	if tolerance > 1 || tolerance < 0 {
