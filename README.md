@@ -60,7 +60,5 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 ## More info in the examples folder
 > https://github.com/DevCriss/GoSmartSearch/tree/main/examples
 
-LICENCE: [MIT](https://github.com/DevCriss/GoSmartSearch/blob/main/LICENCE)
-
 AUTHOR: Christian De La Cruz (https://christiandelacruz.site) 
 
