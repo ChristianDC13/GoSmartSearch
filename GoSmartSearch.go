@@ -119,14 +119,12 @@ func calculateAccuracy(original, current string) float32 {
 
 func findItemInMapSlice(elements []map[string]string, key, value string) map[string]string {
 
-	var result map[string]string
 	for _, item := range elements {
 		if item[key] == value {
-			result = item
-			break
+			return item
 		}
 	}
-	return result
+	return nil
 }
 
 func validateTolerance(tolerance float32) error {
