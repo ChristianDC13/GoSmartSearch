@@ -17,7 +17,10 @@ func main() {
 		{"name": "Alexander", "age": "41", "gender": "M"},
 		{"name": "Pamela", "age": "32", "gender": "F"},
 	}
-	result, _ := gss.SearchInMaps(elements, "Axel Rose", "name", 0)
+	result, err := gss.SearchInMaps(elements, "Axel Rose", "name", 0)
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Println("Results:")
 	for i, value := range result {
