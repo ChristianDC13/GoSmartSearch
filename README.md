@@ -4,8 +4,8 @@ GoSmartSearch is an open source library that gives you the ability to search wit
 
 Find out which items on your list are most similar to the entry, the match doesn't have to be exact.
 >Example:
-Input: geoge
-Result: George, Georgi, Georgy, etc.
+Input: geoge.
+>Result: George, Georgi, Georgy, etc.
 
 
 ## How can i use it?
@@ -58,4 +58,6 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 > https://github.com/DevCriss/GoSmartSearch/tree/main/examples
 
 LICENCE: [MIT](https://github.com/DevCriss/GoSmartSearch/blob/main/LICENCE)
+
 AUTHOR: Christian De La Cruz (https://christiandelacruz.site) 
+
