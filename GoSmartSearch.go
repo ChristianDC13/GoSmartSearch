@@ -7,19 +7,18 @@ import (
 )
 
 type stringResult struct {
-	value     string
-	accurency float32
+	value    string
+	accuracy float32
 }
 
-/*
-Returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
-*/
-func SearchInMaps(elements []map[string]string, term string, key string, tolerance float32) ([]map[string]string, error) {
-	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("Validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+// SearchInMaps returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
+func SearchInMaps(elements []map[string]string, term, key string, tolerance float32) ([]map[string]string, error) {
+
+	if err := validateTolerance(tolerance); err != nil {
+		return nil, err
 	}
 
-	var keyValues []string
+	keyValues := make([]string, 0, len(elements))
 
 	for _, item := range elements {
 		keyValues = append(keyValues, item[key])
@@ -31,7 +30,7 @@ func SearchInMaps(elements []map[string]string, term string, key string, toleran
 		return nil, err
 	}
 
-	var result []map[string]string
+	result := make([]map[string]string, 0, len(sortedKeyValues))
 
 	for _, item := range sortedKeyValues {
 
@@ -44,41 +43,39 @@ func SearchInMaps(elements []map[string]string, term string, key string, toleran
 
 }
 
-/*
-Returns a slice formed by the input elements ordered from most to least similar to the input term
-*/
+// SearchInStrings returns a slice formed by the input elements ordered from most to least similar to the input term
 func SearchInStrings(elements []string, term string, tolerance float32) ([]string, error) {
 
-	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("Validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+	if err := validateTolerance(tolerance); err != nil {
+		return nil, err
 	}
 
 	var tmpResult []stringResult
-	var result []string
 
 	for _, currentTerm := range elements {
 
 		var resultObject stringResult
-		resultObject.accurency = calculateAccurency(term, currentTerm)
+		resultObject.accuracy = calculateAccuracy(term, currentTerm)
 		resultObject.value = currentTerm
-		if resultObject.accurency >= tolerance {
+		if resultObject.accuracy >= tolerance {
 			tmpResult = append(tmpResult, resultObject)
 		}
 	}
 
 	sort.Slice(tmpResult, func(a, b int) bool {
-		return tmpResult[a].accurency > tmpResult[b].accurency
+		return tmpResult[a].accuracy > tmpResult[b].accuracy
 	})
 
-	for _, obj := range tmpResult {
-		result = append(result, obj.value)
+	result := make([]string, len(tmpResult))
+	for i := range tmpResult {
+		result[i] = tmpResult[i].value
 	}
 
 	return result, nil
 
 }
 
-func calculateAccurency(original string, current string) float32 {
+func calculateAccuracy(original, current string) float32 {
 
 	var hits, hitsExact float32
 	var limit int
@@ -120,14 +117,20 @@ func calculateAccurency(original string, current string) float32 {
 	return hitsExact / float32(len(original)) / 4
 }
 
-func findItemInMapSlice(elements []map[string]string, key string, value string) map[string]string {
+func findItemInMapSlice(elements []map[string]string, key, value string) map[string]string {
 
-	var result map[string]string
 	for _, item := range elements {
 		if item[key] == value {
-			result = item
-			break
+			return item
 		}
 	}
-	return result
+	return nil
 }
+
+func validateTolerance(tolerance float32) error {
+	if tolerance > 1 || tolerance < 0 {
+		return fmt.Errorf("validation error: tolerance (%f) must be in range 0-1", tolerance)
+	}
+	return nil
+}
+
