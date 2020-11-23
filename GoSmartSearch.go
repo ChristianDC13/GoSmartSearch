@@ -7,10 +7,9 @@ import (
 )
 
 type stringResult struct {
-	value     string
+	value    string
 	accuracy float32
 }
-
 
 // SearchInMaps returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
 func SearchInMaps(elements []map[string]string, term, key string, tolerance float32) ([]map[string]string, error) {
@@ -42,7 +41,6 @@ func SearchInMaps(elements []map[string]string, term, key string, tolerance floa
 	return result, nil
 
 }
-
 
 // SearchInStrings returns a slice formed by the input elements ordered from most to least similar to the input term
 func SearchInStrings(elements []string, term string, tolerance float32) ([]string, error) {
