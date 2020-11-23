@@ -8,7 +8,7 @@ import (
 
 type stringResult struct {
 	value     string
-	accurency float32
+	accuracy float32
 }
 
 /*
@@ -58,15 +58,15 @@ func SearchInStrings(elements []string, term string, tolerance float32) ([]strin
 	for _, currentTerm := range elements {
 
 		var resultObject stringResult
-		resultObject.accurency = calculateAccurency(term, currentTerm)
+		resultObject.accuracy = calculateAccuracy(term, currentTerm)
 		resultObject.value = currentTerm
-		if resultObject.accurency >= tolerance {
+		if resultObject.accuracy >= tolerance {
 			tmpResult = append(tmpResult, resultObject)
 		}
 	}
 
 	sort.Slice(tmpResult, func(a, b int) bool {
-		return tmpResult[a].accurency > tmpResult[b].accurency
+		return tmpResult[a].accuracy > tmpResult[b].accuracy
 	})
 
 	result := make([]string, len(tmpResult))
@@ -78,7 +78,7 @@ func SearchInStrings(elements []string, term string, tolerance float32) ([]strin
 
 }
 
-func calculateAccurency(original string, current string) float32 {
+func calculateAccuracy(original string, current string) float32 {
 
 	var hits, hitsExact float32
 	var limit int
