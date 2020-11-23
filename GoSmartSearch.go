@@ -19,7 +19,7 @@ func SearchInMaps(elements []map[string]string, term string, key string, toleran
 		return nil, fmt.Errorf("Validation error: %s", "'tolerance' must be a float32 from 0 to 1")
 	}
 
-	var keyValues []string
+	keyValues := make([]string, 0, len(elements))
 
 	for _, item := range elements {
 		keyValues = append(keyValues, item[key])
@@ -31,7 +31,7 @@ func SearchInMaps(elements []map[string]string, term string, key string, toleran
 		return nil, err
 	}
 
-	var result []map[string]string
+	result := make([]map[string]string, len(sortedKeyValues))
 
 	for _, item := range sortedKeyValues {
 
@@ -54,7 +54,6 @@ func SearchInStrings(elements []string, term string, tolerance float32) ([]strin
 	}
 
 	var tmpResult []stringResult
-	var result []string
 
 	for _, currentTerm := range elements {
 
@@ -70,8 +69,9 @@ func SearchInStrings(elements []string, term string, tolerance float32) ([]strin
 		return tmpResult[a].accurency > tmpResult[b].accurency
 	})
 
-	for _, obj := range tmpResult {
-		result = append(result, obj.value)
+	result := make([]string, len(tmpResult))
+	for i := range tmpResult {
+		result[i] = tmpResult[i].value
 	}
 
 	return result, nil
