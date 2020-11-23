@@ -16,7 +16,7 @@ Returns a map slice formed by the input elements ordered (based on the key) from
 */
 func SearchInMaps(elements []map[string]string, term string, key string, tolerance float32) ([]map[string]string, error) {
 	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("Validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+		return nil, fmt.Errorf("validation error: %s", "'tolerance' must be a float32 from 0 to 1")
 	}
 
 	keyValues := make([]string, 0, len(elements))
@@ -50,7 +50,7 @@ Returns a slice formed by the input elements ordered from most to least similar 
 func SearchInStrings(elements []string, term string, tolerance float32) ([]string, error) {
 
 	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("Validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+		return nil, fmt.Errorf("validation error: %s", "'tolerance' must be a float32 from 0 to 1")
 	}
 
 	var tmpResult []stringResult
