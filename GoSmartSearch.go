@@ -13,8 +13,9 @@ type stringResult struct {
 
 // SearchInMaps returns a map slice formed by the input elements ordered (based on the key) from most to least similar to the input term
 func SearchInMaps(elements []map[string]string, term, key string, tolerance float32) ([]map[string]string, error) {
-	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+
+	if err := validateTolerance(tolerance); err != nil {
+		return nil, err
 	}
 
 	keyValues := make([]string, 0, len(elements))
@@ -45,8 +46,8 @@ func SearchInMaps(elements []map[string]string, term, key string, tolerance floa
 // SearchInStrings returns a slice formed by the input elements ordered from most to least similar to the input term
 func SearchInStrings(elements []string, term string, tolerance float32) ([]string, error) {
 
-	if tolerance > 1 || tolerance < 0 {
-		return nil, fmt.Errorf("validation error: %s", "'tolerance' must be a float32 from 0 to 1")
+	if err := validateTolerance(tolerance); err != nil {
+		return nil, err
 	}
 
 	var tmpResult []stringResult
@@ -127,3 +128,11 @@ func findItemInMapSlice(elements []map[string]string, key, value string) map[str
 	}
 	return result
 }
+
+func validateTolerance(tolerance float32) error {
+	if tolerance > 1 || tolerance < 0 {
+		return fmt.Errorf("validation error: tolerance (%f) must be in range 0-1", tolerance)
+	}
+	return nil
+}
+
