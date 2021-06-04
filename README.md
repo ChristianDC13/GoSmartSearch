@@ -14,7 +14,7 @@ Input: geoge.
 ## How can i use it?
 
 Just install this library using your terminal
-> go get github.com/DevCriss/GoSmartSearch
+> go get github.com/ChristianDC13/GoSmartSearch
 
 Import the library in your amazing project
 ```
