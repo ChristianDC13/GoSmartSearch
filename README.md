@@ -20,7 +20,7 @@ Import the library in your amazing project
 ```
 import (
  ...
-  gss "github.com/DevCriss/GoSmartSearch"
+  gss "github.com/ChristianDC13/GoSmartSearch"
 )
 ```
 
@@ -58,7 +58,7 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 |key          |`string`|(Only applicable to map search) It is the key of the map by which you want to do the search. Example: In a list of employees, you could search by 'firstName', 'lastName', etc |
 
 ## More info in the examples folder
-> https://github.com/DevCriss/GoSmartSearch/tree/main/examples
+> https://github.com/ChristianDC13/GoSmartSearch/tree/main/examples
 
 AUTHOR: Christian De La Cruz (https://christiandelacruz.site) 
 
