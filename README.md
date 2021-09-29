@@ -61,5 +61,5 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 > https://github.com/ChristianDC13/GoSmartSearch/tree/main/examples
 
 ## Author
-- [Christian De La Cruz](https://christiandelacruz.site) 
+- [Christian De La Cruz](https://christiandelacruz.dev) 
 
